@@ -9,7 +9,11 @@ export const IMAGES = [
     "asumi.png",
     "hiyori.png",
     "ameri.png",
-    "kano.png"
+    "kano.png",
+
+    // 千恋*万花
+    "murasame.png",
+    "mako.png",
 ]
 
 export const getRandomCharacter = () => {
