@@ -3,10 +3,15 @@ import {cache} from "../middleware/cache";
 import {Hono} from "hono";
 import {charactersHandler} from "../handler/api-characters";
 import {characterHandler} from "../handler/character";
+import {errorHandler} from "../handler/error";
+import {notFoundHandler} from "../handler/notfound";
 
 export const api = new Hono()
 
 export const setupRouter = (app: any) => {
+    app.onError(errorHandler)
+    app.notFound(notFoundHandler)
+
     app.use(cors)
     app.use(cache)
 
