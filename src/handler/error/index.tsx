@@ -5,7 +5,7 @@ export const errorHandler = (err: Error, ctx: Context) => {
     console.log(timestamp, err)
 
     return ctx.json({
-        msg: 'Internal Server Error',
+        msg: 'oops, something went wrong',
         data: {
             trace_id: timestamp
         },

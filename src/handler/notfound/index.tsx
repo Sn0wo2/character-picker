@@ -2,6 +2,6 @@ import {Context} from "hono";
 
 export const notFoundHandler = (c: Context) => {
     return c.json({
-        msg: 'Not Found',
+        msg: 'router not found',
     }, 404);
 }

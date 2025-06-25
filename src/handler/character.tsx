@@ -10,7 +10,7 @@ export const characterHandler = async (ctx: Context) => {
     );
 
     if (!assetResponse.ok) {
-        return new Response("Asset not found", {status: 404});
+        return ctx.json({msg: 'assets not found'}, 404);
     }
 
     return assetResponse;
