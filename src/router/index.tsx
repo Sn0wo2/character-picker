@@ -1,10 +1,10 @@
-import {cors} from "../middleware/cors";
-import {cache} from "../middleware/cache";
 import {Hono} from "hono";
 import {charactersHandler} from "../handler/api-characters";
 import {characterHandler} from "../handler/character";
 import {errorHandler} from "../handler/error";
 import {notFoundHandler} from "../handler/notfound";
+import {cache} from "../middleware/cache";
+import {cors} from "../middleware/cors";
 
 export const api = new Hono()
 
