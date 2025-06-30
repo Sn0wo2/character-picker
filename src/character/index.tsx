@@ -17,6 +17,9 @@ export const IMAGES = [
     // 星空列车与白的旅行
     "neri.png",
     "noir.png",
+
+    // 星之终途
+    "stella.png",
 ]
 
 export const getRandomCharacter = () => {
