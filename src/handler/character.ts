@@ -1,7 +1,8 @@
-import {Context} from "hono";
-import {getRandomCharacter} from "../character";
+/* eslint-disable  @typescript-eslint/no-explicit-any */
+import type {Context} from 'hono';
+import {getRandomCharacter} from '../character';
 
-export const characterHandler = async (ctx: Context) => {
+export const characterHandler = async (ctx: Context) :Promise<any> => {
     const url = new URL(ctx.req.url);
     url.pathname = `/${getRandomCharacter()}`;
 

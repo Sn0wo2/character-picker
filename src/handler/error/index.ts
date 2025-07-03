@@ -1,8 +1,8 @@
-import {Context} from "hono";
+import type {Context} from 'hono';
 
 export const errorHandler = (err: Error, ctx: Context) => {
     const timestamp = new Date().getTime();
-    console.log(timestamp, err)
+    console.log(timestamp, err);
 
     return ctx.json({
         msg: 'oops, something went wrong',
@@ -10,4 +10,4 @@ export const errorHandler = (err: Error, ctx: Context) => {
             trace_id: timestamp
         },
     }, 500);
-}
+};

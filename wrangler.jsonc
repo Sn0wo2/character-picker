@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "character-picker",
   "compatibility_date": "2024-04-01",
-  "main": "./src/index.tsx",
+  "main": "./src/index.ts",
   "assets": {
     "directory": "./public",
     "binding": "ASSETS"

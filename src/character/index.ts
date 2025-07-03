@@ -2,23 +2,23 @@
 // If there is any infringement, please contact me for removal
 export const IMAGES = [
     // 孤独摇滚tv
-    "hitori.png",
-    "ikuyo.png",
+    'hitori.png',
+    'ikuyo.png',
 
     // 常轨脱离凸
-    "asumi.png",
-    "hiyori.png",
-    "ameri.png",
+    'asumi.png',
+    'hiyori.png',
+    'ameri.png',
 
     // 千恋*万花
-    "murasame.png",
-    "mako.png",
+    'murasame.png',
+    'mako.png',
 
     // 星空列车与白的旅行
-    "neri.png",
-    "noir.png",
-]
+    'neri.png',
+    'noir.png',
+];
 
 export const getRandomCharacter = () => {
-    return IMAGES[Math.floor(Math.random() * IMAGES.length)]
-}
+    return IMAGES[Math.floor(Math.random() * IMAGES.length)];
+};

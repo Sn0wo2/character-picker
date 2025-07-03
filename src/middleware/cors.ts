@@ -1,4 +1,4 @@
-import {Context, Next} from 'hono';
+import type {Context, Next} from 'hono';
 
 export const cors = async (c: Context, next: Next) => {
     c.res.headers.set('Access-Control-Allow-Origin', '*');
