@@ -5,6 +5,7 @@
 
 ---
 
+[![CI](https://github.com/Sn0wo2/character-picker/actions/workflows/ci.yml/badge.svg)](https://github.com/Sn0wo2/character-picker/actions/workflows/ci.yml)
 [![CodeQL Advanced](https://github.com/Sn0wo2/character-picker/actions/workflows/codeql.yml/badge.svg)](https://github.com/Sn0wo2/character-picker/actions/workflows/codeql.yml)
 [![Dependabot Updates](https://github.com/Sn0wo2/character-picker/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/Sn0wo2/character-picker/actions/workflows/dependabot/dependabot-updates)
 
