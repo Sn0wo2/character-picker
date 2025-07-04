@@ -31,9 +31,44 @@
 
 ---
 
-`GET /character`
+### API
 
-`GET /v1/characters`
+#### `GET /character`
+
+###### Query Parameters
+
+| Name   | Type   | Required | Description    | Example |
+| ------ | ------ | -------- |----------------| ------- |
+| custom | string | No       | 手动取*character* | `hitori.png` |
+
+---
+
+#### `GET /v1/characters`
+
+###### Response
+
+```json
+{
+  "msg": "/:image",
+  "data": {
+    "characters": [
+      "hitori.png",
+      "ikuyo.png",
+      "asumi.png",
+      "hiyori.png",
+      "ameri.png",
+      "murasame.png",
+      "mako.png",
+      "neri.png",
+      "noir.png"
+    ]
+  }
+}
+```
+
+---
+
+#### `/:image`
 
 ---
 
