@@ -3,7 +3,7 @@ import {IMAGES} from '../character';
 
 export const charactersHandler = (ctx: Context) => {
     return ctx.json({
-        msg: '$root/$image',
+        msg: '/:image',
         data: {
             characters: IMAGES
         }
