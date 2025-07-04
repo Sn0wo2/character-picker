@@ -4,7 +4,7 @@ import {getRandomCharacter} from '../character';
 
 export const characterHandler = async (ctx: Context) :Promise<any> => {
     const url = new URL(ctx.req.url);
-    url.pathname = `/${getRandomCharacter(ctx.req.query().custom.split(',') || undefined)}`;
+    url.pathname = `/${getRandomCharacter(ctx.req.query().custom?.split(','))}`;
 
     const assetResponse = await ctx.env.ASSETS.fetch(
         new Request(url.toString(), ctx.req.raw)
