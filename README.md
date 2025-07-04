@@ -1,6 +1,7 @@
 # character-pickup
 
-随机从图库中获取一个立绘并展示~
+随机从图库中获取一个立绘并展示~  
+~~展示在我的`Github 主页 Readme`的脑婆~~
 
 ---
 
@@ -37,9 +38,9 @@
 
 ###### Query Parameters
 
-| Name   | Type   | Required | Description    | Example |
-| ------ | ------ | -------- |----------------| ------- |
-| custom | string | No       | 手动取*character* | `hitori.png` |
+| Name   | Type      | Required | Description            | Example |
+| ------ |-----------| -------- |------------------------| ------- |
+| custom | string... | No       | 手动取*character*, 用","分隔 | `hitori.png,hiyori.png` |
 
 ---
 
