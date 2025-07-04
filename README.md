@@ -1,7 +1,7 @@
 # character-pickup
 
 随机从图库中获取一个立绘并展示~  
-~~展示在我的`Github 主页 Readme`的脑婆~~
+~~展示在我的`Github 主页 README`的脑婆~~
 
 ---
 
