@@ -19,6 +19,7 @@ export const IMAGES = [
     'noir.png',
 ];
 
-export const getRandomCharacter = () => {
-    return IMAGES[Math.floor(Math.random() * IMAGES.length)];
+export const getRandomCharacter = (list?:String[]) => {
+    if (!list || list.length === 0) list = IMAGES;
+    return list[Math.floor(Math.random() * list.length)];
 };
