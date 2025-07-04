@@ -38,8 +38,8 @@
 
 ###### Query Parameters
 
-| Name   | Type      | Required | Description            | Example |
-| ------ |-----------| -------- |------------------------| ------- |
+| Name   | Type      | Required | Description            | Example                 |
+|--------|-----------|----------|------------------------|-------------------------|
 | custom | string... | No       | 手动取*character*, 用","分隔 | `hitori.png,hiyori.png` |
 
 ---

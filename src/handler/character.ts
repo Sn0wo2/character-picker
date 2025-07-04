@@ -2,7 +2,7 @@
 import type {Context} from 'hono';
 import {getRandomCharacter} from '../character';
 
-export const characterHandler = async (ctx: Context) :Promise<any> => {
+export const characterHandler = async (ctx: Context): Promise<any> => {
     const url = new URL(ctx.req.url);
     url.pathname = `/${getRandomCharacter(ctx.req.query().custom?.split(','))}`;
 

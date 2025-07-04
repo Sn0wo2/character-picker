@@ -7,7 +7,7 @@
     "lib": [
       "ESNext",
       "DOM",
-      "DOM.Iterable",
+      "DOM.Iterable"
     ],
     "skipLibCheck": true,
     /* Bundler mode */
@@ -24,14 +24,12 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-
     "jsxImportSource": "hono/jsx",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true
   },
   "include": [
-    "src",
+    "src"
   ]
-
 }
