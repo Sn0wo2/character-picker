@@ -33,6 +33,22 @@
 
 ---
 
+### Installation
+
+Requirements:
+
+- git
+- Node.js >= 22(?)
+- pnpm
+
+```bash
+git clone https://github.com/Sn0wo2/character-pickup.git
+cd character-pickup
+pnpm install
+```
+
+---
+
 ### API
 
 #### `GET /character`
