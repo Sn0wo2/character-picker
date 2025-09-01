@@ -5,9 +5,10 @@
 
 ---
 
-[![CI](https://github.com/Sn0wo2/character-picker/actions/workflows/ci.yml/badge.svg)](https://github.com/Sn0wo2/character-picker/actions/workflows/ci.yml)
+[![CI](https://github.com/Sn0wo2/character-picker/actions/workflows/ts.yml/badge.svg)](https://github.com/Sn0wo2/character-picker/actions/workflows/ts.yml)
 [![CodeQL Advanced](https://github.com/Sn0wo2/character-picker/actions/workflows/codeql.yml/badge.svg)](https://github.com/Sn0wo2/character-picker/actions/workflows/codeql.yml)
 [![Dependabot Updates](https://github.com/Sn0wo2/character-picker/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/Sn0wo2/character-picker/actions/workflows/dependabot/dependabot-updates)
+
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FSn0wo2%2Fcharacter-picker.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FSn0wo2%2Fcharacter-picker?ref=badge_shield)
 
 ---
