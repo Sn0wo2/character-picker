@@ -13,7 +13,7 @@
 
 ## Demo
 
-> https://char.me0wo.top/character
+> https://picker.me0wo.cc/character
 
 ---
 
