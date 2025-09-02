@@ -14,7 +14,7 @@ importers:
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: ^1.12.1
-        version: 1.12.1(vite@7.1.3)(workerd@1.20250823.0)(wrangler@4.33.1)
+        version: 1.12.1(vite@7.1.4)(workerd@1.20250823.0)(wrangler@4.33.1)
       '@eslint/js':
         specifier: ^9.34.0
         version: 9.34.0
@@ -37,8 +37,8 @@ importers:
         specifier: ^8.41.0
         version: 8.41.0(eslint@9.34.0)(typescript@5.8.3)
       vite:
-        specifier: ^7.1.3
-        version: 7.1.3
+        specifier: ^7.1.4
+        version: 7.1.4
       vite-ssr-components:
         specifier: ^0.5.1
         version: 0.5.1
@@ -1347,8 +1347,8 @@ packages:
     resolution: {integrity: sha512-goIYNqpBXgQC76+2uPYQSZWBZ0WegODQgZe+IvoTGHkiIZV0vQvC0zqU227FDj6SrKC1wB6347oaTDDknq+ZGw==}
     engines: {node: '>=18.0.0'}
 
-  vite@7.1.3:
-    resolution: {integrity: sha512-OOUi5zjkDxYrKhTV3V7iKsoS37VUM7v40+HuwEmcrsf11Cdx9y3DIr2Px6liIcZFwt3XSRpQvFpL3WVy7ApkGw==}
+  vite@7.1.4:
+    resolution: {integrity: sha512-X5QFK4SGynAeeIt+A7ZWnApdUyHYm+pzv/8/A57LqSGcI88U6R6ipOs3uCesdc6yl7nl+zNO0t8LmqAdXcQihw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -1495,7 +1495,7 @@ snapshots:
     optionalDependencies:
       workerd: 1.20250823.0
 
-  '@cloudflare/vite-plugin@1.12.1(vite@7.1.3)(workerd@1.20250823.0)(wrangler@4.33.1)':
+  '@cloudflare/vite-plugin@1.12.1(vite@7.1.4)(workerd@1.20250823.0)(wrangler@4.33.1)':
     dependencies:
       '@cloudflare/unenv-preset': 2.7.0(unenv@2.0.0-rc.19)(workerd@1.20250823.0)
       '@remix-run/node-fetch-server': 0.8.0
@@ -1504,7 +1504,7 @@ snapshots:
       picocolors: 1.1.1
       tinyglobby: 0.2.14
       unenv: 2.0.0-rc.19
-      vite: 7.1.3
+      vite: 7.1.4
       wrangler: 4.33.1
       ws: 8.18.0
     transitivePeerDependencies:
@@ -2598,7 +2598,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite@7.1.3:
+  vite@7.1.4:
     dependencies:
       esbuild: 0.25.9
       fdir: 6.5.0(picomatch@4.0.3)
