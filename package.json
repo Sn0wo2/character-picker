@@ -11,7 +11,7 @@
     "lint:fix": "eslint . --fix && tsc -b"
   },
   "dependencies": {
-    "hono": "^4.9.5"
+    "hono": "^4.9.6"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.12.1",
