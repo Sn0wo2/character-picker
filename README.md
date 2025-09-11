@@ -1,4 +1,4 @@
-# character-pickup
+# character-picker
 
 随机从图库中获取一个立绘并展示~  
 ~~展示在我的`Github 主页 README`的脑婆~~
@@ -31,7 +31,7 @@
 - [~~Sn0wo2/character-img~~](https://github.com/Sn0wo2/character-img)
 
 
-- [**Sn0wo2/character-pickup**](#)
+- [**Sn0wo2/character-picker**](#)
 
 ---
 
@@ -44,8 +44,8 @@ Requirements:
 - pnpm
 
 ```bash
-git clone https://github.com/Sn0wo2/character-pickup.git
-cd character-pickup
+git clone https://github.com/Sn0wo2/character-picker.git
+cd character-picker
 pnpm install
 ```
 
