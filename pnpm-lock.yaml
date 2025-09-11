@@ -25,8 +25,8 @@ importers:
         specifier: ^8.43.0
         version: 8.43.0(eslint@9.34.0)(typescript@5.8.3)
       '@typescript-eslint/typescript-estree':
-        specifier: ^8.41.0
-        version: 8.41.0(typescript@5.8.3)
+        specifier: ^8.43.0
+        version: 8.43.0(typescript@5.8.3)
       eslint:
         specifier: ^9.34.0
         version: 9.34.0
@@ -2038,7 +2038,7 @@ snapshots:
 
   '@typescript-eslint/project-service@8.41.0(typescript@5.8.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.41.0(typescript@5.8.3)
+      '@typescript-eslint/tsconfig-utils': 8.43.0(typescript@5.8.3)
       '@typescript-eslint/types': 8.43.0
       debug: 4.4.1
       typescript: 5.8.3
