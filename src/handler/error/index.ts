@@ -8,6 +8,9 @@ export const errorHandler = async (err: Error, ctx: Context) => {
 
     return ctx.json({
         msg: 'oops, something went wrong',
-        data: {trace_id: traceID},
+        data: {
+            traceID: traceID,
+            rawError: err
+        },
     }, 500);
 };
