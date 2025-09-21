@@ -1,7 +1,8 @@
 # character-picker
 
-随机从图库中获取一个立绘并展示~  
-~~展示在我的`Github 主页 README`的脑婆~~
+随机从图库中获取一个立绘/图片并返回  
+针对`Cloudflare Worker`服务设计项目  
+~~展示在我的`Github 主页 README`的脑婆(?)~~
 
 ---
 
@@ -16,22 +17,6 @@
 ## Demo
 
 > https://picker.me0wo.cc/character
-
----
-
-### 开发顺序
-
-首先开发了[~~`Sn0wo2/img-302`~~](https://github.com/Sn0wo2/img-302)部署在`Vercel`  
-随后因为`Vercel`的`100k/m`的`Serverless`请求限制写了个基于`Cloudflare Worker`的[
-~~`Sn0wo2/character-img`~~](https://github.com/Sn0wo2/character-img)  
-发现`302`跳原资源不仅慢还会被源站的缓存策略限制 ~~(而且跑源站流量不道德)~~  
-随后就有了这个项目
-
-- [~~Sn0wo2/img-302~~](https://github.com/Sn0wo2/img-302)
-- [~~Sn0wo2/character-img~~](https://github.com/Sn0wo2/character-img)
-
-
-- [**Sn0wo2/character-picker**](#)
 
 ---
 
@@ -94,6 +79,24 @@ pnpm install
 
 > 如有侵权请发 [Issue](https://github.com/Sn0wo2/character-picker/issues)  
 > If there is any infringement, please submit an [Issue](https://github.com/Sn0wo2/character-picker/issues)
+
+---
+
+### 开发顺序
+
+首先开发了[~~`Sn0wo2/img-302`~~](https://github.com/Sn0wo2/img-302)部署在`Vercel`  
+随后因为各种原因和`Vercel`需要跑其他的服务而写了个基于`Cloudflare Worker`的[
+~~`Sn0wo2/character-img`~~](https://github.com/Sn0wo2/character-img)  
+发现`302`跳原资源不仅慢还会被源站的缓存策略限制 ~~(而且跑源站流量存在合理性问题)~~  
+随后开发了此v3项目
+
+- [~~Sn0wo2/img-302~~](https://github.com/Sn0wo2/img-302)
+- [~~Sn0wo2/character-img~~](https://github.com/Sn0wo2/character-img)
+
+
+- [**Sn0wo2/character-picker**](#)
+
+---
 
 ## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FSn0wo2%2Fcharacter-picker.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FSn0wo2%2Fcharacter-picker?ref=badge_large)
