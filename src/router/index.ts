@@ -13,8 +13,8 @@ export const setupRouter = (app: Hono) => {
     app.onError(errorHandler);
     app.notFound(notFoundHandler);
 
-    app.use(cors);
     app.use(cache);
+    app.use(cors);
 
     app.get('/character', characterHandler);
 
