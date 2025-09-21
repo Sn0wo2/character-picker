@@ -1,22 +1,20 @@
-name: CI
+name: TypeScript CI
 
 on:
   push:
     branches: [ main ]
   pull_request:
+    branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  lint-build:
-    name: Lint Auto-fix, Build and Update Dependencies
+  test:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-      actions: write
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -24,32 +22,34 @@ jobs:
           version: latest
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
-      - name: Update dependencies
-        run: pnpm update
+      - name: Clean dependencies
+        run: pnpm prune & pnpm dedupe
 
-      - name: Run ESLint with auto-fix
+      - name: Run linter
         run: pnpm run lint:fix
+
+      - name: Build
+        run: pnpm run build
 
       - name: Check for file changes
         id: git-check
-        working-directory: .
         run: |
           if git diff --exit-code; then
-            echo "changed=false" >> $GITHUB_OUTPUT
+          echo "changed=false" >> $GITHUB_OUTPUT
           else
-            echo "changed=true" >> $GITHUB_OUTPUT
+          echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Create Pull Request with lint fixes
         if: steps.git-check.outputs.changed == 'true' && github.ref == 'refs/heads/main'
         uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: "chore(frontend): fix lint issues & update dependencies"
-          title: "chore(frontend): fix lint issues & update dependencies"
-          body: "The `ESLint` action wants to apply these fixes & updates."
-          branch: "chore/es-lint-fixes"
+          commit-message: "chore(lint): fix issues"
+          title: "chore(lint): fix issues"
+          body: "The `eslint fix` action wants to apply these fixes."
+          branch: "chore/eslint-fixes"
           base: main
           signoff: true
           sign-commits: true
