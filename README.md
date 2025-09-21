@@ -1,7 +1,10 @@
 # character-picker
 
+> Random character on cloudflare worker
+
 随机从图库中获取一个立绘/图片并返回  
-针对`Cloudflare Worker`服务设计项目  
+虽然针对`Cloudflare Worker`服务设计, 但是你也可以在任何能用`Hono`的地方使用喵  
+
 ~~展示在我的`Github 主页 README`的脑婆(?)~~
 
 ---
