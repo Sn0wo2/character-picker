@@ -7,10 +7,9 @@ export const cors = async (ctx: Context, next: Next) => {
     ctx.res.headers.set('Access-Control-Max-Age', '86400');
 
     if (ctx.req.method === 'OPTIONS') {
-        ctx.status(204)
         return ctx.json({
             msg: 'success'
-        })
+        }, 200)
     }
 
     await next();
