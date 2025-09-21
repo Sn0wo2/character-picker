@@ -10,7 +10,12 @@ export const errorHandler = async (err: Error, ctx: Context) => {
         msg: 'oops, something went wrong',
         data: {
             traceID: traceID,
-            rawError: err
+            error: {
+                name: err.name,
+                message: err.message,
+                stack: err.stack,
+                cause: err.cause
+            }
         },
     }, 500);
 };
