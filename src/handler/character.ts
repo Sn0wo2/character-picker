@@ -1,4 +1,3 @@
-/* eslint-disable  @typescript-eslint/no-explicit-any */
 import type {Context} from 'hono';
 import {getRandomCharacter} from '../character';
 import {arrayBufferToBase64, parseImageDimensions} from "../utils/img-helper.ts";
