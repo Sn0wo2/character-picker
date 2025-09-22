@@ -1,10 +1,13 @@
-import js from '@eslint/js';
+import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
-    js.configs.recommended,
-    ...tseslint.configs.recommended,
     {
+        files: ['**/*.ts'],
+        extends: [
+            eslint.configs.recommended,
+            ...tseslint.configs.recommended,
+        ],
         languageOptions: {
             parserOptions: {
                 project: './tsconfig.json',
@@ -20,6 +23,7 @@ export default tseslint.config(
             'eslint.config.js',
             'jest.config.js',
             'vite.config.ts',
+            'worker-configuration.d.ts',
         ],
     },
 );
