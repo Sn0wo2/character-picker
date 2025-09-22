@@ -18,6 +18,9 @@ export const IMAGES = [
 
     // anemoi
     'shubika.png',
+
+    // 聚光灯柠檬果酱(lllj)
+    'ena.png',
 ];
 
 export const getRandomCharacter = (list?: string[]) => {
