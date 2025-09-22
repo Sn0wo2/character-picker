@@ -16,14 +16,24 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
 
     const contentType = assetResponse.headers.get("Content-Type") || "image/png";
     const buffer = await assetResponse.arrayBuffer();
-    const b64 = btoa(
-        String.fromCharCode(...new Uint8Array(buffer))
-    );
+
+    function arrayBufferToBase64(buffer: ArrayBuffer): string {
+        const bytes = new Uint8Array(buffer);
+        const chunkSize = 0x8000;
+        let binary = '';
+        for (let i = 0; i < bytes.length; i += chunkSize) {
+            binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize));
+        }
+        return btoa(binary);
+    }
+
+    const b64 = arrayBufferToBase64(buffer);
     const dataUrl = `data:${contentType};base64,${b64}`;
 
     const svg = `<?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink">
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="auto" height="auto">
   <style><![CDATA[
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px) scale(0.998); }
@@ -37,10 +47,7 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
       will-change: opacity, transform;
     }
   ]]></style>
-
-  <image class="img"
-         x="0" y="0"
-         href="${dataUrl}" />
+  <image class="img" x="0" y="0" href="${dataUrl}" />
 </svg>`;
 
     return new Response(svg, {
