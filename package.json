@@ -21,7 +21,7 @@
     "@typescript-eslint/typescript-estree": "^8.44.0",
     "eslint": "^9.36.0",
     "globals": "^16.4.0",
-    "typescript-eslint": "^8.44.0",
+    "typescript-eslint": "^8.44.1",
     "vite": "^7.1.7",
     "vite-ssr-components": "^0.5.1",
     "wrangler": "^4.38.0"
