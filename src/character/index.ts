@@ -16,9 +16,8 @@ export const IMAGES = [
     // 星空列车与白的旅行
     'neri.png',
 
-    // 天使☆纷扰 RE-BOOT!
-    'amane.png',
-    'noa.png',
+    // anemoi
+    'shubika.png',
 ];
 
 export const getRandomCharacter = (list?: string[]) => {
