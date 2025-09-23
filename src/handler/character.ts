@@ -23,7 +23,7 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
     @keyframes slideInScaleFade {
         from {
             opacity: 0;
-            transform: translateX(15px) scale(0.9);
+            transform: translateX(30px) scale(0.92);
         }
         to {
             opacity: 1;
