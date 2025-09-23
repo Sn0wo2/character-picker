@@ -18,22 +18,29 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
     const viewBoxAttr = dims?.width && dims?.height ? `viewBox="0 0 ${dims.width} ${dims.height}"` : "";
 
     return new Response(`<?xml version="1.0" encoding="utf-8"?>
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ${widthAttr} ${heightAttr} ${viewBoxAttr} preserveAspectRatio="xMidYMid meet">
-        <style><![CDATA[
-        @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(6px) scale(0.998); }
-        to   { opacity: 1; transform: translateY(0) scale(1); }
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ${widthAttr} ${heightAttr} ${viewBoxAttr} preserveAspectRatio="xMidYMid meet">
+    <style><![CDATA[
+    @keyframes slideInScaleFade {
+        from {
+            opacity: 0;
+            transform: translateX(15px) scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+        }
     }
-.img {
+
+    .img {
         opacity: 0;
-        animation: fadeIn 700ms ease-out forwards;
+        animation: slideInScaleFade 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         animation-delay: 50ms;
         transform-origin: center center;
         will-change: opacity, transform;
     }
-]]></style>
+    ]]></style>
     <image class="img" x="0" y="0" ${dims?.width ? `width="${dims.width}"` : ""} ${dims?.height ? `height="${dims.height}"` : ""} href="data:${assetResponse.headers.get("Content-Type") || "application/octet-stream"};base64,${arrayBufferToBase64(buffer)}" preserveAspectRatio="xMidYMid meet" />
-        </svg>`, {
+</svg>`, {
         status: 200,
         headers: {
             "content-type": "image/svg+xml; charset=utf-8",
