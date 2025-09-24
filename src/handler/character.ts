@@ -27,7 +27,7 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
 >
 
   <defs>
-    <radialGradient id="g" gradientUnits="userSpaceOnUse" cx="50%" cy="-100%" r="150%">
+    <radialGradient id="g" gradientUnits="userSpaceOnUse" cx="50%" cy="-100%" r="55%">
       <stop offset="0%" stop-color="#ffffff" />
       <stop offset="35%" stop-color="#ffffff" />
       <stop offset="100%" stop-color="#000000">
@@ -36,7 +36,7 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
           begin="cyMove.end"
           from="#000000"
           to="#ffffff"
-          dur="1s"
+          dur="2.5s"
           fill="freeze"
           calcMode="spline"
           keyTimes="0;1"
@@ -50,7 +50,7 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
         from="-100%"
         to="50%"
         begin="0s"
-        dur="2.5s"
+        dur="4s"
         fill="freeze"
         calcMode="spline"
         keyTimes="0;1"
