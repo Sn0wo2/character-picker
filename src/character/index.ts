@@ -19,6 +19,8 @@ export const IMAGES = [
     // anemoi
     'shubika.png',
 
+    // --- NON-STANDARD ---
+
     // 聚光灯柠檬果酱(lllj)
     'ena.png',
 ];
