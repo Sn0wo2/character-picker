@@ -26,6 +26,6 @@
     "typescript-eslint": "^8.44.1",
     "vite": "^7.1.7",
     "vite-ssr-components": "^0.5.1",
-    "wrangler": "^4.38.0"
+    "wrangler": "^4.39.0"
   }
 }
