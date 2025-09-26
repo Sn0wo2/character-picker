@@ -4,7 +4,6 @@
     "config:recommended",
     ":dependencyDashboard",
     ":automergeMinor",
-    ":preserveSemverRanges",
     ":automergePr",
     ":automergeRequireAllStatusChecks",
     ":rebaseStalePrs",
