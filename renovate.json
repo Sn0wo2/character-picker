@@ -14,5 +14,6 @@
     "mergeConfidence:all-badges",
     "replacements:all",
     "workarounds:all"
-  ]
+  ],
+  "autoApprove": true
 }
