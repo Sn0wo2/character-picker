@@ -3,6 +3,8 @@
   "extends": [
     "config:recommended",
     ":dependencyDashboard",
+    ":semanticPrefixFixDepsChoreOthers",
+    ":ignoreModulesAndTests",
     ":automergeMinor",
     ":automergePr",
     ":automergeRequireAllStatusChecks",
