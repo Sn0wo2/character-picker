@@ -2,18 +2,8 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
-    ":dependencyDashboard",
-    ":semanticPrefixFixDepsChoreOthers",
-    ":ignoreModulesAndTests",
     ":automergeMinor",
-    ":preserveSemverRanges",
-    ":automergePr",
-    ":automergeRequireAllStatusChecks",
     ":rebaseStalePrs",
-    "group:monorepos",
-    "group:recommended",
-    "mergeConfidence:all-badges",
-    "replacements:all",
-    "workarounds:all"
+    "mergeConfidence:all-badges"
   ]
 }
