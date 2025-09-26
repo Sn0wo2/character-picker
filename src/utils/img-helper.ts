@@ -59,7 +59,7 @@ export const parseImageDimensions = (buffer: ArrayBuffer): { width: number; heig
 
     // SVG
     const text = new TextDecoder().decode(new Uint8Array(buffer.slice(0, Math.min(len, 512))));
-    const svgMatch = text.match(/<svg\s[^>]*?\bwidth\s*=\s*["']?(\d+)["']?[^>]*?\bheight\s*=\s*["']?(\d+)["']?/i);
+    const svgMatch = RegExp(/<svg\s[^>]*?\bwidth\s*=\s*["']?(\d+)["']?[^>]*?\bheight\s*=\s*["']?(\d+)["']?/i).exec(text);
     if (svgMatch) return {width: Number(svgMatch[1]), height: Number(svgMatch[2])};
 
     return undefined;

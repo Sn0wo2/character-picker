@@ -6,4 +6,3 @@ const app = new Hono();
 setupRouter(app);
 
 export default app;
-

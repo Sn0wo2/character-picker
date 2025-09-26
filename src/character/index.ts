@@ -16,12 +16,12 @@ export const IMAGES = [
     // 星空列车与白的旅行
     'neri.png',
 
+    // --- NON-STANDARD ---
+
     // anemoi
     'shubika.png',
 
-    // --- NON-STANDARD ---
-
-    // 聚光灯柠檬果酱(lllj)
+    // LimeLight Lemonade Jam
     'ena.png',
 ];
 
