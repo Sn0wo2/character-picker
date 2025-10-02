@@ -23,6 +23,7 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
     const fromColor = query.fromColor || '#000000';
     const toColor = query.toColor || '#ffffff';
     const begin = query.begin || 'cyMove.end';
+    // Cubic Bezier Easing Function
     const keySplines1 = query.keySplines1 || '0.25 0.1 0.25 1';
     const keySplines2 = query.keySplines2 || '0.25 0.1 0.25 1';
 
