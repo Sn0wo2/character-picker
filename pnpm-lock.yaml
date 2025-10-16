@@ -10,7 +10,7 @@ importers:
     dependencies:
       hono:
         specifier: ^4.9.8
-        version: 4.9.12
+        version: 4.10.0
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: ^1.13.3
@@ -1073,8 +1073,8 @@ packages:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
 
-  hono@4.9.12:
-    resolution: {integrity: sha512-SrTC0YxqPwnN7yKa8gg/giLyQ2pILCKoideIHbYbFQlWZjYt68D2A4Ae1hehO/aDQ6RmTcpqOV/O2yBtMzx/VQ==}
+  hono@4.10.0:
+    resolution: {integrity: sha512-V/S2IyKL6fk5+bEjiQzg74r5BglqAwU20IX3WjdTUFgvmtSqAZjSxN/Zb5lr6/JXVmH0aqkqOq++3UgzOi9+4Q==}
     engines: {node: '>=16.9.0'}
 
   ignore@5.3.2:
@@ -2323,7 +2323,7 @@ snapshots:
 
   has-flag@4.0.0: {}
 
-  hono@4.9.12: {}
+  hono@4.10.0: {}
 
   ignore@5.3.2: {}
 
