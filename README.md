@@ -20,6 +20,7 @@
 ## Demo
 
 > https://picker.me0wo.cc/character
+<img src="https://picker.me0wo.cc/character" alt="character" width="200">
 
 ---
 
