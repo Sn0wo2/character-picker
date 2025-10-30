@@ -14,7 +14,7 @@ importers:
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: ^1.13.3
-        version: 1.13.16(vite@7.1.12(jiti@2.6.1))(workerd@1.20251011.0)(wrangler@4.45.1)
+        version: 1.13.17(vite@7.1.12(jiti@2.6.1))(workerd@1.20251011.0)(wrangler@4.45.1)
       '@eslint/js':
         specifier: ^9.36.0
         version: 9.38.0
@@ -101,11 +101,11 @@ packages:
       workerd:
         optional: true
 
-  '@cloudflare/vite-plugin@1.13.16':
-    resolution: {integrity: sha512-7NmlcDpR5huCqlQqegJ/Bg9ILsAAzwh1gbvdgGO9tcVrYNa9Te/phssbfzYm/xlI3xBYqyHXLnzyceYjb7i/Ng==}
+  '@cloudflare/vite-plugin@1.13.17':
+    resolution: {integrity: sha512-JYBs+KwN/fcqcOwa4hZ5SPLUAZ2idksZ4umeja4TWPPUWvO2f0Lm0bOjVHI+rFuq72b2vixx2coNJSyntEBUsA==}
     peerDependencies:
       vite: ^6.1.0 || ^7.0.0
-      wrangler: ^4.45.1
+      wrangler: ^4.45.2
 
   '@cloudflare/workerd-darwin-64@1.20251011.0':
     resolution: {integrity: sha512-0DirVP+Z82RtZLlK2B+VhLOkk+ShBqDYO/jhcRw4oVlp0TOvk3cOVZChrt3+y3NV8Y/PYgTEywzLKFSziK4wCg==}
@@ -1503,7 +1503,7 @@ snapshots:
     optionalDependencies:
       workerd: 1.20251011.0
 
-  '@cloudflare/vite-plugin@1.13.16(vite@7.1.12(jiti@2.6.1))(workerd@1.20251011.0)(wrangler@4.45.1)':
+  '@cloudflare/vite-plugin@1.13.17(vite@7.1.12(jiti@2.6.1))(workerd@1.20251011.0)(wrangler@4.45.1)':
     dependencies:
       '@cloudflare/unenv-preset': 2.7.8(unenv@2.0.0-rc.21)(workerd@1.20251011.0)
       '@remix-run/node-fetch-server': 0.8.1
