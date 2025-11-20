@@ -14,7 +14,7 @@ importers:
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: ^1.13.3
-        version: 1.15.1(vite@7.2.4(jiti@2.6.1))(workerd@1.20251113.0)(wrangler@4.49.0)
+        version: 1.15.2(vite@7.2.4(jiti@2.6.1))(workerd@1.20251113.0)(wrangler@4.49.0)
       '@eslint/js':
         specifier: ^9.36.0
         version: 9.39.1
@@ -101,11 +101,20 @@ packages:
       workerd:
         optional: true
 
-  '@cloudflare/vite-plugin@1.15.1':
-    resolution: {integrity: sha512-4B9RO613RxveiXkNDou9AWdHpCoDA9Z1H7kzjeEXDQi/aJxbv7EzQcaSqKkumBnj1iX/jV4b2UCMcCPVfsFfaQ==}
+  '@cloudflare/unenv-preset@2.7.11':
+    resolution: {integrity: sha512-se23f1D4PxKrMKOq+Stz+Yn7AJ9ITHcEecXo2Yjb+UgbUDCEBch1FXQC6hx6uT5fNA3kmX3mfzeZiUmpK1W9IQ==}
+    peerDependencies:
+      unenv: 2.0.0-rc.24
+      workerd: ^1.20251106.1
+    peerDependenciesMeta:
+      workerd:
+        optional: true
+
+  '@cloudflare/vite-plugin@1.15.2':
+    resolution: {integrity: sha512-SPMxsesbABOjzcAa4IzW+yM+fTIjx3GG1doh229Pg16FjSEZJhknyRpcld4gnaZioK3JKwG9FWdKsUhbplKY8w==}
     peerDependencies:
       vite: ^6.1.0 || ^7.0.0
-      wrangler: ^4.49.1
+      wrangler: ^4.50.0
 
   '@cloudflare/workerd-darwin-64@1.20251113.0':
     resolution: {integrity: sha512-GBlun9onB69rDMZIJ9TdvQ9d3KS5L2FXwlzJ9+AjrbHqYnIif8eH5wyLPIR5wfkXNyrEFiWtEYses+aUQZQLWQ==}
@@ -1196,8 +1205,8 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  miniflare@4.20251118.0:
-    resolution: {integrity: sha512-dVO7Bhbv82karSaZ1qacN/W4My2cM9HVxzBl0I+oVX/P/a9NZASSj3kZoAkjuAvc/ytbdOckIRYpK1oLyzVXNg==}
+  miniflare@4.20251118.1:
+    resolution: {integrity: sha512-uLSAE/DvOm392fiaig4LOaatxLjM7xzIniFRG5Y3yF9IduOYLLK/pkCPQNCgKQH3ou0YJRHnTN+09LPfqYNTQQ==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -1531,12 +1540,18 @@ snapshots:
     optionalDependencies:
       workerd: 1.20251113.0
 
-  '@cloudflare/vite-plugin@1.15.1(vite@7.2.4(jiti@2.6.1))(workerd@1.20251113.0)(wrangler@4.49.0)':
+  '@cloudflare/unenv-preset@2.7.11(unenv@2.0.0-rc.24)(workerd@1.20251113.0)':
     dependencies:
-      '@cloudflare/unenv-preset': 2.7.10(unenv@2.0.0-rc.24)(workerd@1.20251113.0)
+      unenv: 2.0.0-rc.24
+    optionalDependencies:
+      workerd: 1.20251113.0
+
+  '@cloudflare/vite-plugin@1.15.2(vite@7.2.4(jiti@2.6.1))(workerd@1.20251113.0)(wrangler@4.49.0)':
+    dependencies:
+      '@cloudflare/unenv-preset': 2.7.11(unenv@2.0.0-rc.24)(workerd@1.20251113.0)
       '@remix-run/node-fetch-server': 0.8.1
       get-port: 7.1.0
-      miniflare: 4.20251118.0
+      miniflare: 4.20251118.1
       picocolors: 1.1.1
       tinyglobby: 0.2.15
       unenv: 2.0.0-rc.24
@@ -2446,7 +2461,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  miniflare@4.20251118.0:
+  miniflare@4.20251118.1:
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       acorn: 8.14.0
