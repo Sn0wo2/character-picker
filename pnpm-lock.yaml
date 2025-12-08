@@ -14,7 +14,7 @@ importers:
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: ^1.13.3
-        version: 1.17.0(vite@7.2.6(jiti@2.6.1))(workerd@1.20251202.0)(wrangler@4.53.0)
+        version: 1.17.0(vite@7.2.7(jiti@2.6.1))(workerd@1.20251202.0)(wrangler@4.53.0)
       '@eslint/js':
         specifier: ^9.36.0
         version: 9.39.1
@@ -41,7 +41,7 @@ importers:
         version: 8.48.1(eslint@9.39.1(jiti@2.6.1))(typescript@5.8.3)
       vite:
         specifier: ^7.1.7
-        version: 7.2.6(jiti@2.6.1)
+        version: 7.2.7(jiti@2.6.1)
       vite-ssr-components:
         specifier: ^0.5.1
         version: 0.5.1
@@ -1291,8 +1291,8 @@ packages:
     resolution: {integrity: sha512-goIYNqpBXgQC76+2uPYQSZWBZ0WegODQgZe+IvoTGHkiIZV0vQvC0zqU227FDj6SrKC1wB6347oaTDDknq+ZGw==}
     engines: {node: '>=18.0.0'}
 
-  vite@7.2.6:
-    resolution: {integrity: sha512-tI2l/nFHC5rLh7+5+o7QjKjSR04ivXDF4jcgV0f/bTQ+OJiITy5S6gaynVsEM+7RqzufMnVbIon6Sr5x1SDYaQ==}
+  vite@7.2.7:
+    resolution: {integrity: sha512-ITcnkFeR3+fI8P1wMgItjGrR10170d8auB4EpMLPqmx6uxElH3a/hHGQabSHKdqd4FXWO1nFIp9rRn7JQ34ACQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -1439,7 +1439,7 @@ snapshots:
     optionalDependencies:
       workerd: 1.20251202.0
 
-  '@cloudflare/vite-plugin@1.17.0(vite@7.2.6(jiti@2.6.1))(workerd@1.20251202.0)(wrangler@4.53.0)':
+  '@cloudflare/vite-plugin@1.17.0(vite@7.2.7(jiti@2.6.1))(workerd@1.20251202.0)(wrangler@4.53.0)':
     dependencies:
       '@cloudflare/unenv-preset': 2.7.13(unenv@2.0.0-rc.24)(workerd@1.20251202.0)
       '@remix-run/node-fetch-server': 0.8.1
@@ -1449,7 +1449,7 @@ snapshots:
       picocolors: 1.1.1
       tinyglobby: 0.2.15
       unenv: 2.0.0-rc.24
-      vite: 7.2.6(jiti@2.6.1)
+      vite: 7.2.7(jiti@2.6.1)
       wrangler: 4.53.0
       ws: 8.18.0
     transitivePeerDependencies:
@@ -2484,7 +2484,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite@7.2.6(jiti@2.6.1):
+  vite@7.2.7(jiti@2.6.1):
     dependencies:
       esbuild: 0.25.12
       fdir: 6.5.0(picomatch@4.0.3)
