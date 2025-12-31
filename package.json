@@ -3,13 +3,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "update-index": "node scripts/update-index.js",
     "build": "vite build",
     "preview": "pnpm run build && vite preview",
     "deploy": "pnpm run build && wrangler deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
     "lint": "eslint . && tsc -b",
     "lint:fix": "eslint . --fix && tsc -b",
-    "prepublishOnly": "pnpm run lint:fix && pnpm run build"
+    "prepublishOnly": "pnpm run update-index & pnpm run lint:fix && pnpm run build"
   },
   "dependencies": {
     "hono": "^4.9.8"

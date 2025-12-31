@@ -1,29 +1,10 @@
-// 立绘, 只收集我自己喜欢的
-// If there is any infringement, please contact me for removal
-export const IMAGES = [
-    // 孤独摇滚tv
-    'hitori.png',
-    'ikuyo.png',
+// @ts-expect-error raw import
+import rawIndex from '../../public/.index?raw';
 
-    // 常轨脱离凸
-    'asumi.png',
-    'hiyori.png',
-    'ameri.png',
-
-    // 千恋*万花
-    'murasame.png',
-
-    // 星空列车与白的旅行
-    'neri.png',
-
-    // --- NON-STANDARD ---
-
-    // anemoi
-    'shubika.png',
-
-    // LimeLight Lemonade Jam
-    'ena.png',
-];
+export const IMAGES = (rawIndex as string)
+    .split(/\n/)
+    .map(line => line.trim())
+    .filter(line => line && !line.startsWith('//'));
 
 export const getRandomCharacter = (list?: string[]) => {
     if (!list || list.length === 0) list = IMAGES;
