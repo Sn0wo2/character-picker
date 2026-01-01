@@ -7,11 +7,11 @@ export default defineConfig({
     build: {
         rollupOptions: {
             input: {
-                main: './src/index.ts'
+                index: './src/index.ts',
             },
             output: {
-                entryFileNames: 'index.js'
-            }
-        }
-    }
+                entryFileNames: '_worker.js',
+            },
+        },
+    },
 });
