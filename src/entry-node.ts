@@ -3,8 +3,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 try {
-    const indexContent = await fs.readFile(path.join(process.cwd(), 'public', '.index'), 'utf-8');
-    globalThis.CHARACTER_INDEX = indexContent;
+    globalThis.CHARACTER_INDEX = await fs.readFile(path.join(process.cwd(), 'public', '.index'), 'utf-8');
 } catch {
     console.error('Failed to load character index');
     globalThis.CHARACTER_INDEX = '';
@@ -20,23 +19,20 @@ const assetsFetcher = {
         const pathname = url.pathname.replace(/^\//, '');
         const filePath = path.join(process.cwd(), 'public', pathname);
 
-        try {
-            const stats = await fs.stat(filePath);
-            if (stats.isFile()) {
-                const data = await fs.readFile(filePath);
-                const ext = path.extname(filePath).toLowerCase();
-                let type = 'application/octet-stream';
-                if (ext === '.png') type = 'image/png';
-                else if (ext === '.jpg' || ext === '.jpeg') type = 'image/jpeg';
-                else if (ext === '.json') type = 'application/json';
-                else if (ext === '.txt') type = 'text/plain';
-                else if (ext === '.html') type = 'text/html';
+        const stats = await fs.stat(filePath);
+        if (stats.isFile()) {
+            const data = await fs.readFile(filePath);
+            const ext = path.extname(filePath).toLowerCase();
+            let type = 'application/octet-stream';
+            if (ext === '.png') type = 'image/png';
+            else if (ext === '.jpg' || ext === '.jpeg') type = 'image/jpeg';
+            else if (ext === '.json') type = 'application/json';
+            else if (ext === '.txt') type = 'text/plain';
+            else if (ext === '.html') type = 'text/html';
 
-                return new Response(data, {
-                    headers: {'Content-Type': type},
-                });
-            }
-        } catch {
+            return new Response(data, {
+                headers: {'Content-Type': type},
+            });
         }
         return new Response('Not Found', {status: 404});
     },
