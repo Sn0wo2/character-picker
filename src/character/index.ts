@@ -1,7 +1,4 @@
-// @ts-expect-error raw import
-import rawIndex from '../../public/.index?raw';
-
-export const IMAGES = (rawIndex as string)
+export const IMAGES = (globalThis.CHARACTER_INDEX || '' as string)
     .split(/\n/)
     .map(line => line.trim())
     .filter(line => line && !line.startsWith('//'));

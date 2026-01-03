@@ -3,8 +3,12 @@
   "type": "module",
   "scripts": {
     "update-index": "node scripts/update-index.js",
-    "dev": "vite",
+    "dev": "pnpm run update-index && vite",
+    "dev:node": "tsx watch src/entry-node.ts",
+    "start": "tsx src/entry-node.ts",
     "build": "pnpm run update-index && vite build",
+    "build:node": "pnpm run update-index && vite build -c vite.config.node.ts",
+    "build:server": "pnpm run update-index && vite build -c vite.config.node.ts",
     "preview": "pnpm run build && vite preview",
     "deploy": "pnpm run build && wrangler deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
@@ -15,15 +19,20 @@
   "dependencies": {
     "hono": "^4.9.8"
   },
+  "peerDependencies": {
+    "@hono/node-server": "^1.19.7"
+  },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.13.3",
     "@eslint/js": "^9.36.0",
+    "@types/node": "^25.0.3",
     "@typescript-eslint/eslint-plugin": "^8.44.1",
     "@typescript-eslint/parser": "^8.44.1",
     "@typescript-eslint/typescript-estree": "^8.44.1",
     "eslint": "^9.36.0",
     "globals": "^17.0.0",
     "jiti": "^2.6.0",
+    "tsx": "^4.21.0",
     "typescript-eslint": "^8.44.1",
     "vite": "^7.1.7",
     "vite-ssr-components": "^0.5.1",
