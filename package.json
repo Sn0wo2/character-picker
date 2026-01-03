@@ -20,6 +20,7 @@
   "dependencies": {
     "hono": "^4.9.8",
     "image-size": "^2.0.2",
+    "svgo": "^4.0.0",
     "uint8array-extras": "^1.5.0"
   },
   "peerDependencies": {
@@ -35,7 +36,6 @@
     "eslint": "^9.36.0",
     "globals": "^17.0.0",
     "jiti": "^2.6.0",
-    "svgo": "^4.0.0",
     "tsx": "^4.21.0",
     "typescript-eslint": "^8.44.1",
     "vite": "^7.1.7",
