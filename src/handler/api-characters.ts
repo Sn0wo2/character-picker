@@ -1,5 +1,5 @@
 import type {Context} from 'hono';
-import {IMAGES} from '../character';
+import {IMAGES} from '../assets/character.ts';
 
 export const charactersHandler = async (ctx: Context) => {
     return ctx.json({

@@ -8,6 +8,7 @@ export default defineConfig({
     plugins: [cloudflare(), ssrPlugin()],
     define: {
         'globalThis.CHARACTER_INDEX': JSON.stringify(fs.readFileSync(path.join(process.cwd(), 'public', '.index'), 'utf-8')),
+        'globalThis.VERSION': JSON.stringify(fs.readFileSync(path.join(process.cwd(), 'public', '.version'), 'utf-8')),
     },
     build: {
         rollupOptions: {

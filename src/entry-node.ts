@@ -4,9 +4,11 @@ import path from 'node:path';
 
 try {
     globalThis.CHARACTER_INDEX = await fs.readFile(path.join(process.cwd(), 'public', '.index'), 'utf-8');
+    globalThis.VERSION = await fs.readFile(path.join(process.cwd(), 'public', '.version'), 'utf-8');
 } catch {
-    console.error('Failed to load character index');
+    console.error('Failed to load character index or version');
     globalThis.CHARACTER_INDEX = '';
+    globalThis.VERSION = '';
 }
 
 const {setupRouter} = await import('./router');
@@ -52,6 +54,7 @@ setupRouter(app);
 const port = 3000;
 console.log(`Server is running on http://localhost:${port}`);
 
+// dynamic import!
 const {serve} = await import('@hono/node-server');
 
 serve({

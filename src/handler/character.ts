@@ -1,5 +1,5 @@
 import type {Context} from 'hono';
-import {getRandomCharacter} from '../character';
+import {getRandomCharacter} from '../assets/character.ts';
 import {arrayBufferToBase64, minifySVG, parseImageDimensions} from "../utils/img-helper.ts";
 
 export const characterHandler = async (ctx: Context): Promise<Response> => {

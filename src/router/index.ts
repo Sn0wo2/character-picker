@@ -4,13 +4,17 @@ import {characterHandler} from '../handler/character';
 import {errorHandler} from '../handler/error';
 import {cache} from '../middleware/cache';
 import {cors} from '../middleware/cors';
+import {version} from "../middleware/version.ts";
 
 export const setupRouter = (app: Hono) => {
     app.onError(errorHandler);
-    app.notFound(characterHandler);
 
+    app.use(version)
     app.use(cache);
     app.use(cors);
+
+
+    app.notFound(characterHandler);
 
     const test = new Hono(); // v0 debug
     const api = new Hono(); // v1 release
