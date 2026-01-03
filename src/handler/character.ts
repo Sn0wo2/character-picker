@@ -1,6 +1,6 @@
 import type {Context} from 'hono';
 import {getRandomCharacter} from '../character';
-import {arrayBufferToBase64, parseImageDimensions} from "../utils/img-helper.ts";
+import {arrayBufferToBase64, minifySVG, parseImageDimensions} from "../utils/img-helper.ts";
 
 export const characterHandler = async (ctx: Context): Promise<Response> => {
     const url = new URL(ctx.req.url);
@@ -36,7 +36,8 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
     const heightAttr = dims?.height ? `height="${dims.height}"` : `height="auto"`;
     const viewBoxAttr = dims?.width && dims?.height ? `viewBox="0 0 ${dims.width} ${dims.height}"` : "";
 
-    return new Response(`<?xml version="1.0" encoding="utf-8"?>
+    // Generate the SVG content
+    const svgContent = `<?xml version="1.0" encoding="utf-8"?>
 <svg
   xmlns="http://www.w3.org/2000/svg"
   ${widthAttr}
@@ -85,7 +86,9 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
     href="data:${assetResponse.headers.get("Content-Type") || "application/octet-stream"};base64,${arrayBufferToBase64(buffer)}"
     mask="url(#m)"
   />
-</svg>`, {
+</svg>`;
+
+    return new Response(minifySVG(svgContent), {
         status: 200,
         headers: {
             "content-type": "image/svg+xml; charset=utf-8",
