@@ -2,10 +2,7 @@
 
 > Random character on cloudflare worker
 
-随机从图库中获取一个立绘/图片并返回  
-虽然针对`Cloudflare Worker`服务设计, 但是你也可以在任何能用`Hono`的地方使用喵
-
-~~展示在我的`Github 主页 README`的脑婆(?)~~
+~~用来展示在我`Github 主页 README`的脑婆(?)的项目~~
 
 ---
 
@@ -19,30 +16,17 @@
 
 ## Demo
 
-> https://picker.me0wo.cc/character
-<img src="https://picker.me0wo.cc/character" alt="character" width="200">
+> https://picker.me0wo.cc
+
+<img src="https://picker.me0wo.cc" alt="character" width="200">
 
 ---
-
-### Installation
-
-Requirements:
-
-- git
-- Node.js >= 22(?)
-- pnpm
-
-```bash
-git clone https://github.com/Sn0wo2/character-picker.git
-cd character-picker
-pnpm install
-```
 
 ---
 
 ### API
 
-#### `GET /character`
+#### `GET /*`
 
 ###### Query Parameters
 
@@ -77,7 +61,7 @@ pnpm install
 {
   "msg": "/:image",
   "data": {
-    "characters": [
+    "ch1aracters": [
       "hitori.png",
       "ikuyo.png",
       "asumi.png",
@@ -96,6 +80,8 @@ pnpm install
 
 #### `/:image`
 
+> Response raw image (Require Cloudflare Worker RN)
+
 ---
 
 > 如有侵权请发 [Issue](https://github.com/Sn0wo2/character-picker/issues)  
@@ -103,12 +89,18 @@ pnpm install
 
 ---
 
-### 开发顺序
+### ~~开发顺序~~
 
-首先开发了[~~`Sn0wo2/img-302`~~](https://github.com/Sn0wo2/img-302)部署在`Vercel`  
+<details>
+<summary>点击展开开发历史</summary>
+
+首先开发了[~~`Sn0wo2/img-302`~~](https://github.com/Sn0wo2/img-302)部署在`Vercel`
+
 随后因为各种原因和`Vercel`需要跑其他的服务而写了个基于`Cloudflare Worker`的[
-~~`Sn0wo2/character-img`~~](https://github.com/Sn0wo2/character-img)  
-发现`302`跳原资源不仅慢还会被源站的缓存策略限制 ~~(而且跑源站流量存在合理性问题)~~  
+~~`Sn0wo2/character-img`~~](https://github.com/Sn0wo2/character-img)
+
+发现`302`跳原资源不仅慢还会被源站的缓存策略限制 ~~(而且跑源站流量存在合理性问题)~~
+
 随后开发了此v3项目
 
 - [~~Sn0wo2/img-302~~](https://github.com/Sn0wo2/img-302)
@@ -116,6 +108,8 @@ pnpm install
 
 
 - [**Sn0wo2/character-picker**](#)
+
+</details>
 
 ---
 
