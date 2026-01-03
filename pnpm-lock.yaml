@@ -17,6 +17,9 @@ importers:
       image-size:
         specifier: ^2.0.2
         version: 2.0.2
+      svgo:
+        specifier: ^4.0.0
+        version: 4.0.0
       uint8array-extras:
         specifier: ^1.5.0
         version: 1.5.0
@@ -48,9 +51,6 @@ importers:
       jiti:
         specifier: ^2.6.0
         version: 2.6.1
-      svgo:
-        specifier: ^4.0.0
-        version: 4.0.0
       tsx:
         specifier: ^4.21.0
         version: 4.21.0
