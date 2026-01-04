@@ -15,7 +15,7 @@ const updateIndex = () => {
         const content = fs.readFileSync(IGNORE_FILE, 'utf-8');
         ignoreList = content.split(/\r?\n/).map(line => line.trim()).filter(line => line && !line.startsWith('#'));
     }
-    ignoreList.push('.assetsignore', '.index');
+    ignoreList.push('.assetsignore', '.index', '.version');
 
     let files = [];
 

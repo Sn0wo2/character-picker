@@ -20,11 +20,16 @@ const getCommitHash = () => {
 
 const updateVersion = () => {
     const hash = getCommitHash();
-    const url = process.env.VERSION_URL || '';
-    const content = `${hash}
-url: ${url}`;
+    let content = hash;
 
-    // Ensure public directory exists (though it likely does)
+    if (fs.existsSync(VERSION_FILE)) {
+        const lines = fs.readFileSync(VERSION_FILE, 'utf-8').split('\n');
+        if (lines.length > 0) {
+            lines[0] = hash;
+            content = lines.join('\n');
+        }
+    }
+
     if (!fs.existsSync(PUBLIC_DIR)) {
         fs.mkdirSync(PUBLIC_DIR, {recursive: true});
     }
