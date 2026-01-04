@@ -13,7 +13,6 @@ export const setupRouter = (app: Hono) => {
     app.use(cache);
     app.use(cors);
 
-
     app.notFound(characterHandler);
 
     const test = new Hono(); // v0 debug

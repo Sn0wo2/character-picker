@@ -1,8 +1,9 @@
-import {Hono} from 'hono'
+import {type Context, Hono, type Next} from 'hono'
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import mime from 'mime-types';
 import {serve} from "@hono/node-server";
+import {setupRouter} from './router';
 
 try {
     globalThis.CHARACTER_INDEX = await fs.readFile(path.join(process.cwd(), 'public', '.index'), 'utf-8');
@@ -13,33 +14,30 @@ try {
     globalThis.VERSION = '';
 }
 
-const {setupRouter} = await import('./router');
-
 const app = new Hono();
 
-const assetsFetcher = {
-    fetch: async (input: RequestInfo | URL) => {
-        const url = new URL(input instanceof Request ? input.url : input.toString());
-        const pathname = url.pathname.replace(/^\//, '');
-        const filePath = path.join(process.cwd(), 'public', pathname);
-
-        if (await fs.stat(filePath)) {
-
-            return new Response(await fs.readFile(filePath), {
-                headers: {'Content-Type': mime.lookup(filePath) || 'application/octet-stream'},
-            });
-        }
-        return new Response('Not Found', {status: 404});
-    },
-};
-
-app.use('*', async (c, next) => {
+app.use('*', async (c: Context, next: Next) => {
     const env = c.env || {};
     c.env = {
         ...env,
-        ASSETS: assetsFetcher,
+        ASSETS: {
+            fetch: app.fetch
+        },
     };
     await next();
+});
+
+app.get('/*', async (c: Context, next: Next) => {
+    const pathname = c.req.path.replace(/^/, '');
+    const filePath = path.join(process.cwd(), 'public', pathname);
+
+    try {
+        if ((await fs.stat(filePath)).isFile()) {
+            return c.body(await fs.readFile(filePath), 200, {'content-type': mime.lookup(filePath) || 'application/octet-stream'});
+        }
+    } catch {
+    }
+    return next()
 });
 
 setupRouter(app);

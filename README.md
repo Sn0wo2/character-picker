@@ -78,7 +78,7 @@
 
 #### `/:image`
 
-> Response raw image (Require Cloudflare Worker RN)
+> Response raw image
 
 ---
 
