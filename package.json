@@ -4,18 +4,17 @@
   "scripts": {
     "update-index": "node scripts/update-index.js",
     "update-version": "node scripts/update-version.js",
-    "dev": "pnpm run update-index && pnpm run update-version && vite",
-    "dev:node": "tsx watch src/entry-node.ts",
-    "start": "tsx src/entry-node.ts",
-    "build": "pnpm run update-index && pnpm run update-version && vite build",
-    "build:node": "pnpm run update-index && pnpm run update-version && vite build -c vite.config.node.ts",
-    "build:server": "pnpm run update-index && pnpm run update-version && vite build -c vite.config.node.ts",
+    "dev": "pnpm run update-index && vite",
+    "build": "pnpm run update-index && vite build",
     "preview": "pnpm run build && vite preview",
-    "deploy": "pnpm run build && wrangler deploy",
+    "deploy": "pnpm run prepublishOnly && wrangler deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "build:node": "pnpm run update-index && vite build -c vite.config.node.ts",
+    "start:node": "pnpm run build:node && node dist/node/entry-node.js",
+
     "lint": "eslint . && tsc -b",
     "lint:fix": "eslint . --fix && tsc -b",
-    "prepublishOnly": "pnpm run lint:fix && pnpm run build"
+    "prepublishOnly": "pnpm run update-version && pnpm run lint:fix && pnpm run build"
   },
   "dependencies": {
     "hono": "^4.11.3",
