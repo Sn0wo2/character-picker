@@ -5,15 +5,15 @@ import {errorHandler} from '../handler/error';
 import {cache} from '../middleware/cache';
 import {cors} from '../middleware/cors';
 import {version} from "../middleware/version.ts";
+import {notFoundHandler} from "../handler/notfound";
 
 export const setupRouter = (app: Hono) => {
     app.onError(errorHandler);
+    app.notFound(notFoundHandler)
 
     app.use(version)
     app.use(cache);
     app.use(cors);
-
-    app.notFound(characterHandler);
 
     const test = new Hono(); // v0 debug
     const api = new Hono(); // v1 release
@@ -26,4 +26,6 @@ export const setupRouter = (app: Hono) => {
 
     app.route('/v0', test);
     app.route('/v1', api);
+
+    app.use("*", characterHandler);
 };
