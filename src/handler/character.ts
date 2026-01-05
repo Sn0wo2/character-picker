@@ -3,11 +3,9 @@ import {getRandomCharacter} from '../assets/character.ts';
 import {arrayBufferToBase64, minifySVG, parseImageDimensions} from "../utils/img-helper.ts";
 
 export const characterHandler = async (ctx: Context): Promise<Response> => {
-    const url = new URL(ctx.req.url);
-    const character = getRandomCharacter(ctx.req.query().custom?.split(","));
-    url.pathname = `/${character}`;
-
     const query = ctx.req.query();
+
+    const character = getRandomCharacter(query.custom?.split(","));
     const gradientStartCY = query.gradientStartCY || '-100%';
     const gradientEndCY = query.gradientEndCY || '50%';
     const colorChangeDuration = parseFloat(query.colorChangeDuration || '2.5') || 2.5;
@@ -26,7 +24,10 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
     const keySplines1 = query.keySplines1 || '0.25 0.1 0.25 1';
     const keySplines2 = query.keySplines2 || '0.25 0.1 0.25 1';
 
-    const assetResponse = await ctx.env.ASSETS.fetch(new Request(url.toString(), ctx.req.raw));
+    const url = new URL(ctx.req.url);
+    url.pathname = `/${character}`;
+    const request = new Request(url.toString());
+    const assetResponse = await ctx.env.ASSETS.fetch(request);
     if (!assetResponse.ok) return ctx.json({msg: "assets not found"}, 404);
 
     const buffer = await assetResponse.arrayBuffer();
@@ -36,8 +37,7 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
     const heightAttr = dims?.height ? `height="${dims.height}"` : `height="auto"`;
     const viewBoxAttr = dims?.width && dims?.height ? `viewBox="0 0 ${dims.width} ${dims.height}"` : "";
 
-    // Generate the SVG content
-    const svgContent = `<?xml version="1.0" encoding="utf-8"?>
+    return new Response(minifySVG(`<?xml version="1.0" encoding="utf-8"?>
 <svg
   xmlns="http://www.w3.org/2000/svg"
   ${widthAttr}
@@ -86,9 +86,7 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
     href="data:${assetResponse.headers.get("Content-Type") || "application/octet-stream"};base64,${arrayBufferToBase64(buffer)}"
     mask="url(#m)"
   />
-</svg>`;
-
-    return new Response(minifySVG(svgContent), {
+</svg>`), {
         status: 200,
         headers: {
             "content-type": "image/svg+xml; charset=utf-8",
