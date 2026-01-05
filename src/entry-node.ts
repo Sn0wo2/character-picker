@@ -27,7 +27,7 @@ app.get('*', async (c: Context, next: Next) => {
         if (stat.isFile()) {
             return c.body(await fs.readFile(filePath), 200, {'content-type': mime.lookup(filePath) || 'application/octet-stream'});
         }
-    } catch (e) {
+    } catch {
         // ignore
     }
     return next()
