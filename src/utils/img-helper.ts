@@ -12,6 +12,7 @@ export const parseImageDimensions = (buffer: ArrayBuffer): { width?: number; hei
             return {width: dimensions.width, height: dimensions.height};
         }
     } catch {
+        // ignore
     }
 
     try {
@@ -30,11 +31,27 @@ export const parseImageDimensions = (buffer: ArrayBuffer): { width?: number; hei
 
         if (width || height) return {width, height};
     } catch {
+        // ignore
     }
 
     return undefined;
 }
 
 export const minifySVG = (svg: string): string => {
-    return svg.replace(/\s+/g, ' ').replace(/>\s+</g, '><').trim();
+    return svg
+        // 移除 XML 注释
+        .replaceAll(/<!--[\s\S]*?-->/g, '')
+
+        // 移除标签之间的空白（只匹配完全由空格/换行组成的间隔）
+        .replaceAll(/>\s+</g, '><')
+
+        // 使用正向断言 (?=[^<]*>) 确保只处理标签内部，不触碰文本内容
+        .replaceAll(/\s+(?=[^<]*>)/g, ' ')
+
+        // e.g., fill = "red" -> fill="red"
+        .replaceAll(/\s*=\s*(?=[^<]*>)/g, '=')
+
+        // e.g., <rect /> -> <rect/>
+        .replaceAll(/\s+(\/?>)/g, '$1')
+        .trim();
 };
