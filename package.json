@@ -10,7 +10,7 @@
     "deploy": "pnpm run prepublishOnly && wrangler deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
     "build:node": "pnpm run update-index && vite build -c vite.config.node.ts",
-    "start:node": "pnpm run build:node && node dist/node/entry-node.js",
+    "start:node": "pnpm run build:node && node --enable-source-maps dist/node/entry-node.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prepublishOnly": "pnpm run update-version && pnpm run lint:fix && pnpm run build"
