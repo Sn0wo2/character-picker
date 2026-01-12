@@ -1,13 +1,8 @@
-import {uint8ArrayToBase64} from 'uint8array-extras';
 import {imageSize} from 'image-size';
 
-export const arrayBufferToBase64 = (buffer: ArrayBuffer): string => {
-    return uint8ArrayToBase64(new Uint8Array(buffer));
-}
-
-export const parseImageDimensions = (buffer: ArrayBuffer): { width?: number; height?: number } | undefined => {
+export const parseImageDimensions = (buffer: Uint8Array): { width?: number; height?: number } | undefined => {
     try {
-        const dimensions = imageSize(Buffer.from(buffer));
+        const dimensions = imageSize(buffer);
         if (dimensions.width && dimensions.height) {
             return {width: dimensions.width, height: dimensions.height};
         }

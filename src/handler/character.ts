@@ -1,8 +1,9 @@
 import type {Context} from 'hono';
 import {getRandomCharacter} from '../assets/character.ts';
-import {arrayBufferToBase64, minifySVG, parseImageDimensions} from "../utils/img-helper.ts";
+import {minifySVG, parseImageDimensions} from "../utils/img-helper.ts";
+import {uint8ArrayToBase64} from "uint8array-extras";
 
-export const characterHandler = async (ctx: Context): Promise<Response> => {
+export const characterHandler = async (ctx: Context) => {
     const query = ctx.req.query();
 
     const character = getRandomCharacter(query.custom?.split(","));
@@ -27,12 +28,12 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
     const url = new URL(ctx.req.url);
     url.pathname = `/${character}`;
     const request = new Request(url.toString());
-    const assetResponse = await ctx.env.ASSETS.fetch(request);
+    const assetResponse: Response = await ctx.env.ASSETS.fetch(request);
     if (!assetResponse.ok) return ctx.json({msg: "assets not found"}, 404);
 
-    const buffer = await assetResponse.arrayBuffer();
+    const data = await assetResponse.bytes();
 
-    const dims = parseImageDimensions(buffer);
+    const dims = parseImageDimensions(data);
     const widthAttr = dims?.width ? `width="${dims.width}"` : `width="auto"`;
     const heightAttr = dims?.height ? `height="${dims.height}"` : `height="auto"`;
     const viewBoxAttr = dims?.width && dims?.height ? `viewBox="0 0 ${dims.width} ${dims.height}"` : "";
@@ -83,7 +84,7 @@ export const characterHandler = async (ctx: Context): Promise<Response> => {
     x="0" y="0"
     ${dims?.width ? `width="${dims.width}"` : ""}
     ${dims?.height ? `height="${dims.height}"` : ""}
-    href="data:${assetResponse.headers.get("Content-Type") || "application/octet-stream"};base64,${arrayBufferToBase64(buffer)}"
+    href="data:${assetResponse.headers.get("Content-Type") || "application/octet-stream"};base64,${uint8ArrayToBase64(data)}"
     mask="url(#m)"
   />
 </svg>`), {
