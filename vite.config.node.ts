@@ -10,6 +10,7 @@ export default defineConfig({
     build: {
         target: 'node18',
         ssr: true,
+        sourcemap: true,
         lib: {
             entry: 'src/entry-node.ts',
             formats: ['es'],
