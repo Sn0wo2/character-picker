@@ -35,7 +35,7 @@ app.get('*', async (c: Context, next: Next) => {
 
 setupRouter(app);
 
-const port = 3000;
+const port = 3030;
 console.log(`Server is running on http://localhost:${port}`);
 
 serve({
