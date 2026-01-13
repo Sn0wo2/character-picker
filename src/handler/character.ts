@@ -22,6 +22,7 @@ export const characterHandler = async (ctx: Context) => {
     const fromColor = query.fromColor || '#000000';
     const toColor = query.toColor || '#ffffff';
     const begin = query.begin || 'cyMove.end';
+    const moveBegin = query.moveBegin || '0s';
     const keySplines1 = query.keySplines1 || '0.25 0.1 0.25 1';
     const keySplines2 = query.keySplines2 || '0.25 0.1 0.25 1';
 
@@ -68,7 +69,7 @@ export const characterHandler = async (ctx: Context) => {
         attributeName="cy"
         from="${gradientStartCY}"
         to="${gradientEndCY}"
-        begin="0s"
+        begin="${moveBegin}"
         dur="${gradientMoveDuration}s"
         fill="freeze"
         calcMode="spline"
