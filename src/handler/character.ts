@@ -32,7 +32,7 @@ export const characterHandler = async (ctx: Context) => {
     const assetResponse: Response = await ctx.env.ASSETS.fetch(request);
     if (!assetResponse.ok) return ctx.json({msg: "assets not found"}, 404);
 
-    const data = await assetResponse.bytes();
+    const data = new Uint8Array(await assetResponse.arrayBuffer());
 
     const dims = parseImageDimensions(data);
     const widthAttr = dims?.width ? `width="${dims.width}"` : `width="auto"`;

@@ -1,15 +1,25 @@
 import type {Context} from 'hono';
-import {md5} from '../../utils/hash-helper.ts';
+import {logger} from "../../utils/logger.ts";
 
 export const errorHandler = async (err: Error, ctx: Context) => {
-    const traceID = `${await md5(new TextEncoder().encode(err.name + err.message))}:${Date.now()}`
+    const traceID = ctx.res.headers.get('x-trace-id');
+    const req = {
+        traceID,
+        method: ctx.req.method,
+        url: ctx.req.url,
+        header: ctx.req.header(),
+    }
 
-    console.error("TraceID:", traceID, "\n", err)
+    logger.error({
+        msg: "Global Error Handler Caught Exception",
+        err,
+        req,
+    })
 
     return ctx.json({
         msg: 'oops, something went wrong',
         data: {
-            traceID: traceID,
+            req,
             error: {
                 name: err.name,
                 message: err.message,
