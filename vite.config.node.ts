@@ -14,12 +14,6 @@ export default defineConfig({
         lib: {
             entry: 'src/entry-node.ts',
             formats: ['es'],
-            fileName: 'server',
-        },
-        rollupOptions: {
-            external: [
-                /node:.*/,
-            ],
         },
         outDir: 'dist/node',
     },

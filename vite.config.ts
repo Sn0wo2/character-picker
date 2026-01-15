@@ -14,11 +14,13 @@ export default defineConfig({
     environments: {
         character_picker: {
             build: {
-                emptyOutDir: true
+                emptyOutDir: true,
+                sourcemap: true,
             }
         }
     },
     build: {
         minify: true,
+        sourcemap: true,
     },
 });
