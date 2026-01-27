@@ -10,7 +10,7 @@ importers:
     dependencies:
       hono:
         specifier: ^4.11.4
-        version: 4.11.6
+        version: 4.11.7
       image-size:
         specifier: ^2.0.2
         version: 2.0.2
@@ -26,7 +26,7 @@ importers:
         version: 9.39.2
       '@hono/node-server':
         specifier: ^1.19.9
-        version: 1.19.9(hono@4.11.6)
+        version: 1.19.9(hono@4.11.7)
       '@types/mime-types':
         specifier: ^3.0.1
         version: 3.0.1
@@ -1121,8 +1121,8 @@ packages:
     resolution: {integrity: sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==}
     engines: {node: '>=8'}
 
-  hono@4.11.6:
-    resolution: {integrity: sha512-ofIiiHyl34SV6AuhE3YT2mhO5HRWokce+eUYE82TsP6z0/H3JeJcjVWEMSIAiw2QkjDOEpES/lYsg8eEbsLtdw==}
+  hono@4.11.7:
+    resolution: {integrity: sha512-l7qMiNee7t82bH3SeyUCt9UF15EVmaBvsppY2zQtrbIhl/yzBTny+YUxsVjSjQ6gaqaeVtZmGocom8TzBlA4Yw==}
     engines: {node: '>=16.9.0'}
 
   ignore@5.3.2:
@@ -1765,9 +1765,9 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
-  '@hono/node-server@1.19.9(hono@4.11.6)':
+  '@hono/node-server@1.19.9(hono@4.11.7)':
     dependencies:
-      hono: 4.11.6
+      hono: 4.11.7
 
   '@humanfs/core@0.19.1': {}
 
@@ -2323,7 +2323,7 @@ snapshots:
 
   has-flag@4.0.0: {}
 
-  hono@4.11.6: {}
+  hono@4.11.7: {}
 
   ignore@5.3.2: {}
 
