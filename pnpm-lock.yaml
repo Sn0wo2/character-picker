@@ -20,7 +20,7 @@ importers:
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: ^1.21.0
-        version: 1.25.4(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)(tsx@4.21.0))(workerd@1.20260302.0)(wrangler@4.68.1)
+        version: 1.25.5(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)(tsx@4.21.0))(workerd@1.20260302.0)(wrangler@4.68.1)
       '@eslint/js':
         specifier: ^9.39.2
         version: 9.39.3
@@ -122,11 +122,11 @@ packages:
       workerd:
         optional: true
 
-  '@cloudflare/vite-plugin@1.25.4':
-    resolution: {integrity: sha512-pF2EQksIWKXSE2x2a5rdx29JBMzAxoiLUjIBaaKo9TsIgoSXwz50Ov/UcEjhcMN4IiuOsqEBxBRS0O00K2unMw==}
+  '@cloudflare/vite-plugin@1.25.5':
+    resolution: {integrity: sha512-dWnJtp/4/m2XQ5Ssnxrh6rb+Jvlkd9pTZhX8MS5sNhdzoULB6vzPkdKaKnaLnYC97iL3j1I2m0gIr15QznKRjA==}
     peerDependencies:
       vite: ^6.1.0 || ^7.0.0
-      wrangler: ^4.68.0
+      wrangler: ^4.68.1
 
   '@cloudflare/workerd-darwin-64@1.20260302.0':
     resolution: {integrity: sha512-cGtxPByeVrgoqxbmd8qs631wuGwf8yTm/FY44dEW4HdoXrb5jhlE4oWYHFafedkQCvGjY1Vbs3puAiKnuMxTXQ==}
@@ -1532,7 +1532,7 @@ snapshots:
     optionalDependencies:
       workerd: 1.20260302.0
 
-  '@cloudflare/vite-plugin@1.25.4(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)(tsx@4.21.0))(workerd@1.20260302.0)(wrangler@4.68.1)':
+  '@cloudflare/vite-plugin@1.25.5(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)(tsx@4.21.0))(workerd@1.20260302.0)(wrangler@4.68.1)':
     dependencies:
       '@cloudflare/unenv-preset': 2.14.0(unenv@2.0.0-rc.24)(workerd@1.20260302.0)
       miniflare: 4.20260302.0
