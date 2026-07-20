@@ -23,7 +23,7 @@
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.21.0",
     "@eslint/js": "^10.0.0",
-    "@hono/node-server": "^1.19.9",
+    "@hono/node-server": "^2.0.0",
     "@types/mime-types": "^3.0.1",
     "@types/node": "^25.0.8",
     "@typescript-eslint/eslint-plugin": "^8.53.0",
