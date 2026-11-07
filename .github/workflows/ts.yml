@@ -1,56 +1,106 @@
-name: TypeScript CI
+name: CI
 
 on:
   push:
-    branches: [ "main", "dev" ]
+    branches: [main, dev]
   pull_request:
-    branches: [ "main", "dev" ]
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pull-requests: write
+permissions: {}
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  test:
+  check:
+    name: Checks
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      autofix: ${{ steps.patch.outputs.changed }}
     steps:
-      - uses: actions/checkout@v6
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      - uses: actions/checkout@v7
         with:
-          version: latest
+          persist-credentials: false
 
-      - name: Install dependencies
-        run: pnpm install
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
 
-      - name: Clean dependencies
-        run: pnpm prune & pnpm dedupe
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version-file: package.json
 
-      - name: Run linter
-        run: pnpm run lint:fix
+      - run: bun install --frozen-lockfile
 
-      - name: Build
-        run: pnpm run build
+      - name: Apply lint fixes
+        id: lint
+        continue-on-error: true
+        run: bun run lint:fix
 
-      - name: Check for file changes
-        id: git-check
+      - name: Save lint fixes
+        id: patch
+        if: ${{ !cancelled() }}
         run: |
-          if git diff --exit-code; then
-          echo "changed=false" >> $GITHUB_OUTPUT
-          else
-          echo "changed=true" >> $GITHUB_OUTPUT
+          if ! git diff --quiet; then
+            git diff --binary > "$RUNNER_TEMP/lint-fixes.patch"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git restore --worktree -- .
           fi
 
-      - name: Create Pull Request with lint fixes
-        if: steps.git-check.outputs.changed == 'true' && github.ref == 'refs/heads/main'
-        uses: peter-evans/create-pull-request@v8
+      - uses: actions/upload-artifact@v7
+        if: ${{ !cancelled() && steps.patch.outputs.changed == 'true' }}
         with:
-          commit-message: "chore(lint): fix issues"
-          title: "chore(lint): fix issues"
-          body: "The `eslint fix` action wants to apply these fixes."
-          branch: "chore/eslint-fixes"
-          base: main
-          signoff: true
-          sign-commits: true
+          name: lint-fixes
+          path: ${{ runner.temp }}/lint-fixes.patch
+          retention-days: 7
+          if-no-files-found: error
+
+      - name: Check lint result
+        if: ${{ !cancelled() && (steps.lint.outcome != 'success' || steps.patch.outputs.changed == 'true') }}
+        run: |
+          echo "::error::Lint failed or requires fixes. Download the lint-fixes artifact if available."
+          exit 1
+
+      - run: bun run check
+
+      - run: bun run test
+
+      - run: bun run build
+
+      - run: bun run build:worker
+
+      - run: bun run security
+
+  autofix:
+    needs: check
+    if: >-
+      !cancelled() && needs.check.outputs.autofix == 'true' &&
+      (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          persist-credentials: false
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: lint-fixes
+          path: ${{ runner.temp }}/lint-fixes
+
+      - run: git apply "$RUNNER_TEMP/lint-fixes/lint-fixes.patch"
+
+      - uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: "chore(autofix): formatting and lint"
+          branch: auto-fix/node-${{ github.event.pull_request.number || github.ref_name }}
+          delete-branch: true
+          title: "chore(autofix): formatting and lint"
+          body: "Automated Biome fixes from CI"
+          labels: automated,node

@@ -1,39 +1,15 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "sourceMap": true,
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-    "target": "ESNext",
-    "module": "ESNext",
-    "useDefineForClassFields": true,
-    "lib": [
-      "ESNext",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "skipLibCheck": true,
-    /* Bundler mode */
-    "moduleResolution": "Bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "moduleDetection": "force",
+    "target": "ES2024",
+    "module": "NodeNext",
+    "lib": ["ES2024"],
+    "types": ["node"],
     "noEmit": true,
-    "jsx": "react-jsx",
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "verbatimModuleSyntax": true,
     "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
-    "jsxImportSource": "hono/jsx",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true
   },
-  "exclude": [
-    "node_modules",
-    "dist",
-    "build",
-    "public"
-  ]
+  "include": ["src/**/*.ts", "scripts/**/*.ts", "vite.config.ts", "worker-configuration.d.ts"]
 }
