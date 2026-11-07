@@ -1,9 +1,6 @@
-export const IMAGES = (globalThis.CHARACTER_INDEX || '' as string)
-    .split(/\n/)
-    .map(line => line.trim())
-    .filter(line => line && !line.startsWith('//'));
+import { parseMetadata } from "../utils/metadata.ts"
+import imageGeometry from "./character-geometry.json" with { type: "json" }
 
-export const getRandomCharacter = (list?: string[]) => {
-    if (!list || list.length === 0) list = IMAGES;
-    return list[Math.floor(Math.random() * list.length)];
-};
+export const IMAGES = parseMetadata(globalThis.CHARACTER_INDEX || "")
+export const CHARACTER_NAMES = new Set(IMAGES)
+export const IMAGE_GEOMETRY: Readonly<Partial<Record<string, readonly number[]>>> = imageGeometry

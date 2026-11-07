@@ -1,44 +1,38 @@
-import {type Context, Hono, type Next} from 'hono'
-import fs from 'node:fs/promises';
-import path from 'node:path';
-import mime from 'mime-types';
-import {serve} from "@hono/node-server";
-import {setupRouter} from './router';
+import { serve } from "@hono/node-server"
+import { serveStatic } from "@hono/node-server/serve-static"
+import { Hono } from "hono"
+import type { AppEnv } from "./global.d.ts"
+import app from "./index.ts"
 
-const app = new Hono();
+const PATH_SEPARATOR = /[\\/]/
 
-app.use('*', async (c: Context, next: Next) => {
-    const env = c.env || {};
-    c.env = {
-        ...env,
-        ASSETS: {
-            fetch: app.fetch
-        },
-    };
-    await next();
-});
+const assets = new Hono()
+assets.use("*", async (ctx, next) => {
+  let pathname: string
+  try {
+    pathname = decodeURIComponent(ctx.req.path)
+  } catch {
+    return ctx.notFound()
+  }
+  if (pathname.split(PATH_SEPARATOR).some((segment) => segment.startsWith("."))) return ctx.notFound()
+  return await next()
+})
+assets.use("*", serveStatic({ root: "./public" }))
 
-app.get('*', async (c: Context, next: Next) => {
-    const pathname = c.req.path;
-    const filePath = path.join(process.cwd(), 'public', pathname);
+const bindings: AppEnv["Bindings"] = {
+  ASSETS: { fetch: async (input, init) => assets.fetch(new Request(input, init)) },
+}
 
-    try {
-        const stat = await fs.stat(filePath);
-        if (stat.isFile()) {
-            return c.body(await fs.readFile(filePath), 200, {'content-type': mime.lookup(filePath) || 'application/octet-stream'});
-        }
-    } catch {
-        // ignore
-    }
-    return next()
-});
-
-setupRouter(app);
-
-const port = 3030;
-console.log(`Server is running on http://localhost:${port}`);
-
-serve({
-    fetch: app.fetch,
-    port,
-});
+serve(
+  {
+    fetch: async (request) => {
+      if (request.method === "GET" || request.method === "HEAD") {
+        const response = await assets.fetch(request)
+        if (response.status !== 404) return response
+      }
+      return app.fetch(request, bindings)
+    },
+    port: 3030,
+  },
+  (info) => console.log(`Server is running on http://localhost:${info.port}`),
+)

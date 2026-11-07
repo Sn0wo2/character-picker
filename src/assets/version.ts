@@ -1,15 +1,5 @@
-export const VERSION = (globalThis.VERSION || '' as string)
-    .split(/\n/)
-    .map(line => line.trim())
-    .filter(line => line && !line.startsWith('//'));
+import { parseMetadata } from "../utils/metadata.ts"
 
-export const getVersion = async () => {
-    try {
-        const hash = VERSION[0] || 'dev';
-        const url = VERSION[1] || "https://github.com/Sn0wo2/character-picker";
-        return {hash, url};
-    } catch (e) {
-        console.warn('Failed to fetch version:', e);
-        return {hash: 'unknown', url: ''};
-    }
-};
+export const [VERSION_HASH = "dev", PROJECT_URL = "https://github.com/Sn0wo2/character-picker"] = parseMetadata(
+  globalThis.VERSION || "",
+)

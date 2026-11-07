@@ -1,31 +1,33 @@
-import type {Context} from 'hono';
-import {logger} from "../../utils/logger.ts";
+import type { ErrorHandler } from "hono"
+import type { AppEnv } from "../../global.d.ts"
 
-export const errorHandler = async (err: Error, ctx: Context) => {
-    const traceID = ctx.res.headers.get('x-trace-id');
-    const req = {
-        traceID,
-        method: ctx.req.method,
-        url: ctx.req.url,
-        header: ctx.req.header(),
-    }
+export const errorHandler: ErrorHandler<AppEnv> = (err, ctx) => {
+  const req = {
+    traceID: ctx.res.headers.get("x-trace-id"),
+    method: ctx.req.method,
+    url: ctx.req.url,
+    header: ctx.req.header(),
+  }
 
-    logger.error({
-        msg: "Global Error Handler Caught Exception",
-        err,
+  for (const name of ["authorization", "proxy-authorization", "cookie", "x-api-key"]) {
+    if (name in req.header) req.header[name] = "[REDACTED]"
+  }
+
+  console.error("Global Error Handler Caught Exception", err, req)
+
+  return ctx.json(
+    {
+      msg: "oops, something went wrong",
+      data: {
         req,
-    })
-
-    return ctx.json({
-        msg: 'oops, something went wrong',
-        data: {
-            req,
-            error: {
-                name: err.name,
-                message: err.message,
-                stack: err.stack,
-                cause: err.cause
-            }
+        error: {
+          name: err.name,
+          message: err.message,
+          stack: import.meta.env.DEV ? err.stack : undefined,
+          cause: import.meta.env.DEV ? err.cause : undefined,
         },
-    }, 500);
-};
+      },
+    },
+    500,
+  )
+}
