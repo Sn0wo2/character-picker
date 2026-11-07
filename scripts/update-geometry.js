@@ -1,13 +1,14 @@
 import fs from "node:fs"
 import { PNG } from "pngjs"
-import { parseMetadata } from "../src/utils/metadata.ts"
 
 const PUBLIC_DIR = new URL("../public/", import.meta.url)
-const INDEX_FILE = new URL("../public/.index", import.meta.url)
 const GEOMETRY_FILE = new URL("../src/assets/character-geometry.json", import.meta.url)
 
-const indexedFiles = parseMetadata(fs.readFileSync(INDEX_FILE, "utf-8"))
-const indexedFileSet = new Set(indexedFiles)
+const imageFiles = fs
+  .readdirSync(PUBLIC_DIR, { withFileTypes: true })
+  .filter((entry) => entry.isFile() && entry.name.toLowerCase().endsWith(".png"))
+  .map((entry) => entry.name)
+const imageFileSet = new Set(imageFiles)
 
 let geometry = Object.create(null)
 let geometryModifiedAt = 0
@@ -16,10 +17,13 @@ if (fs.existsSync(GEOMETRY_FILE)) {
   geometryModifiedAt = fs.statSync(GEOMETRY_FILE).mtimeMs
 }
 
+const existingFiles = Object.keys(geometry).filter((file) => imageFileSet.has(file))
+const newFiles = imageFiles.filter((file) => !Object.hasOwn(geometry, file))
+
 let changed = false
-for (const file of indexedFiles) {
+for (const file of [...existingFiles, ...newFiles]) {
   try {
-    const filePath = new URL(file.split("/").map(encodeURIComponent).join("/"), PUBLIC_DIR)
+    const filePath = new URL(encodeURIComponent(file), PUBLIC_DIR)
     if (Object.hasOwn(geometry, file) && geometry[file] && fs.statSync(filePath).mtimeMs <= geometryModifiedAt) continue
 
     const { width, height, data } = PNG.sync.read(fs.readFileSync(filePath))
@@ -50,13 +54,14 @@ for (const file of indexedFiles) {
 }
 
 for (const file of Object.keys(geometry)) {
-  if (indexedFileSet.has(file)) continue
+  if (imageFileSet.has(file)) continue
   delete geometry[file]
   changed = true
 }
 
 if (changed || !fs.existsSync(GEOMETRY_FILE)) {
-  fs.writeFileSync(GEOMETRY_FILE, JSON.stringify(geometry))
+  const entries = Object.entries(geometry).map(([file, box]) => `  ${JSON.stringify(file)}: [${box.join(", ")}]`)
+  fs.writeFileSync(GEOMETRY_FILE, `{\n${entries.join(",\n")}\n}\n`)
   console.log(`Updated geometry for ${Object.keys(geometry).length} images.`)
 } else {
   console.log("Image geometry is up to date.")

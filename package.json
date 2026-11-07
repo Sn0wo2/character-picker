@@ -22,12 +22,12 @@
     "LICENSE"
   ],
   "scripts": {
-    "update-index": "node scripts/update-index.js && node scripts/update-geometry.js",
+    "update-geometry": "node scripts/update-geometry.js",
     "update-version": "node scripts/update-version.js",
-    "dev": "bun run update-index && vite",
+    "dev": "bun run update-geometry && vite",
     "start": "node build/index.js",
-    "build": "bun run update-index && bun scripts/build.mjs",
-    "build:worker": "bun run update-index && vite build",
+    "build": "bun run update-geometry && bun scripts/build.mjs",
+    "build:worker": "bun run update-geometry && vite build",
     "preview": "bun run build:worker && vite preview",
     "deploy": "bun run update-version && bun run build:worker && wrangler deploy",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings",
