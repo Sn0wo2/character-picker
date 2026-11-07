@@ -1,0 +1,90 @@
+version: 2
+project_name: character-picker
+
+before:
+  hooks:
+    - bun run update-version
+    - bun run build
+
+builds:
+  - id: app
+    skip: true
+
+archives:
+  - id: app
+    meta: true
+    name_template: "{{ .ProjectName }}_{{ .Version }}"
+    formats: [tar.gz, zip]
+    files:
+      - build/**
+      - public/**
+      - package.json
+      - LICENSE
+
+checksum:
+  name_template: checksums.txt
+
+dockers_v2:
+  - images:
+      - ghcr.io/sn0wo2/{{ .ProjectName }}
+    tags:
+      - "v{{ .Version }}"
+      - "{{ if not .Prerelease }}latest{{ end }}"
+      - "beta-latest"
+    platforms: [linux/amd64, linux/arm64]
+    extra_files:
+      - build
+      - public
+      - package.json
+      - LICENSE
+    flags:
+      - '{{ if eq (index .Env "GITHUB_ACTIONS") "true" }}--cache-from=type=gha,version=2,scope={{ .ProjectName }}{{ end }}'
+      - '{{ if eq (index .Env "GITHUB_ACTIONS") "true" }}--cache-to=type=gha,version=2,mode=max,scope={{ .ProjectName }},ignore-error=true{{ end }}'
+    labels:
+      org.opencontainers.image.title: "{{ .ProjectName }}"
+      org.opencontainers.image.source: "https://github.com/Sn0wo2/{{ .ProjectName }}"
+      org.opencontainers.image.url: "https://github.com/Sn0wo2/{{ .ProjectName }}"
+      org.opencontainers.image.licenses: "Apache-2.0"
+      org.opencontainers.image.version: "{{ .Version }}"
+      org.opencontainers.image.revision: "{{ .Commit }}"
+      org.opencontainers.image.created: "{{ .Date }}"
+
+snapshot:
+  version_template: "{{ .Version }}-next"
+
+changelog:
+  use: github
+  groups:
+    - title: 「Features」
+      regexp: "^.*feat(?:\\([^)]+\\))?:+.*$"
+    - title: 「Bug Fixes」
+      regexp: "^.*fix(?:\\([^)]+\\))?:+.*$"
+      order: 1
+    - title: 「Performance Improvements」
+      regexp: "^.*perf(?:\\([^)]+\\))?:+.*$"
+      order: 2
+    - title: 「Documentation」
+      regexp: "^.*docs(?:\\([^)]+\\))?:+.*$"
+      order: 3
+    - title: 「Maintenance & Chores」
+      regexp: "^.*chore(?:\\([^)]+\\))?:+.*$"
+      order: 4
+    - title: 「Code Refactoring」
+      regexp: "^.*refactor(?:\\([^)]+\\))?:+.*$"
+      order: 5
+    - title: 「Tests」
+      regexp: "^.*test(?:\\([^)]+\\))?:+.*$"
+      order: 6
+    - title: 「Dependency Updates」
+      regexp: "^.*deps(?:\\([^)]+\\))?:+.*$"
+      order: 7
+    - title: 「Others」
+      order: 999
+
+release:
+  prerelease: auto
+  replace_existing_artifacts: true
+  header: |
+    {{ if .Prerelease }}
+    > ⚠️ **WARNING: This is a pre-release version and is not recommended for production use.**
+    {{ end }}

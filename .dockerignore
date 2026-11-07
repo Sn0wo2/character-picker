@@ -1,0 +1,8 @@
+*
+!Dockerfile
+!package.json
+!LICENSE
+!build/
+!build/**
+!public/
+!public/**
