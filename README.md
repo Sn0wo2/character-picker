@@ -20,6 +20,13 @@
 
 <img src="https://picker.me0wo.cc" alt="character" width="200">
 
+输出 SVG 会根据角色可见内容自适应宽高比，默认长边为 2K。可通过 `resolution` 切换输出尺寸：
+
+```text
+https://picker.me0wo.cc?resolution=2k
+https://picker.me0wo.cc?resolution=4k
+```
+
 ---
 
 ### Deploy
@@ -27,15 +34,16 @@
 ##### Node.js:
 
 ```bash
-pnpm install
-pnpm run start:node
+bun install
+bun run build
+bun start
 ```
 
 ##### Cloudflare Worker:
 
 ```bash
-pnpm install
-pnpm run deploy
+bun install
+bun run deploy
 ```
 
 ---
@@ -52,8 +60,7 @@ pnpm run deploy
 
 首先开发了[~~`Sn0wo2/img-302`~~](https://github.com/Sn0wo2/img-302)部署在`Vercel`
 
-随后因为各种原因和`Vercel`需要跑其他的服务而写了个基于`Cloudflare Worker`的[
-~~`Sn0wo2/character-img`~~](https://github.com/Sn0wo2/character-img)
+随后因为各种原因和`Vercel`需要跑其他的服务而写了个基于`Cloudflare Worker`的[~~`Sn0wo2/character-img`~~](https://github.com/Sn0wo2/character-img)
 
 发现`302`跳原资源不仅慢还会被源站的缓存策略限制 ~~(而且跑源站流量存在合理性问题)~~
 
@@ -61,7 +68,6 @@ pnpm run deploy
 
 - [~~Sn0wo2/img-302~~](https://github.com/Sn0wo2/img-302)
 - [~~Sn0wo2/character-img~~](https://github.com/Sn0wo2/character-img)
-
 
 - [**Sn0wo2/character-picker**](#)
 

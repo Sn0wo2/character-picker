@@ -1,1 +1,2 @@
-custom: [ 'https://afdian.com/order/create?user_id=f6649360615d11eb8d5b52540025c377&remark=github.com/Sn0wo2/character-picker' ] 
+custom:
+  ["https://afdian.com/order/create?user_id=f6649360615d11eb8d5b52540025c377&remark=github.com/Sn0wo2/character-picker"]
