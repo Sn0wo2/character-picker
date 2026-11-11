@@ -53,7 +53,7 @@
     "@types/node": "^24",
     "pngjs": "7.0.0",
     "typescript": "^7.0.2",
-    "vite": "^7.3.1",
+    "vite": "^8.0.0",
     "wrangler": "^4.59.2"
   }
 }
