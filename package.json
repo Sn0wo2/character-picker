@@ -9,7 +9,7 @@
     "url": "git+https://github.com/Sn0wo2/character-picker.git"
   },
   "type": "module",
-  "packageManager": "bun@1.4.4",
+  "packageManager": "bun@1.4.5",
   "engines": {
     "node": ">=24"
   },
